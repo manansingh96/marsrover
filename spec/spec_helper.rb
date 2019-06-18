@@ -1,5 +1,22 @@
 require "bundler/setup"
-require "marsrover"
+
+require "bundler/setup"
+
+project_lib_dir = File.join(
+    File.dirname(
+        File.expand_path(__FILE__)
+    ), '..', 'lib'
+)
+
+require "#{project_lib_dir}/input_parser.rb"
+require "#{project_lib_dir}/movements.rb"
+require "#{project_lib_dir}/rovers.rb"
+
+FILE_FIXTURE_PATH = File.join(
+    File.dirname(
+        File.expand_path(__FILE__)
+    ), '..', 'spec', 'fixtures'
+)
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

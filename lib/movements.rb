@@ -1,45 +1,44 @@
-# frozen_string_literal: true
-
 class Movements
+  attr_accessor :coordinates, :commands
+
   def initialize(coordinates, commands)
-    @coordinates = coordinates
-    @commands = commands
-    process
+    self.coordinates = coordinates
+    self.commands = commands
   end
 
   def process
-    @commands.each do |command|
+    commands.each do |command|
       case command
       when 'L'
-        turn(command)
+        turn_left
       when 'R'
-        turn(command)
+        turn_right
       when 'M'
         move
-      else
-        puts 'Wrong Input: ' + command
       end
     end
+  rescue NoMethodError
+    raise 'Invalid command for movement'
   end
 
-  def turn(turn_direction)
-    if turn_direction == 'L'
-      @coordinates[:orientation] = (@coordinates[:orientation] - 1) < 1 ? 4 : (@coordinates[:orientation] - 1)
-    end
-    if turn_direction == 'R'
-      @coordinates[:orientation] = (@coordinates[:orientation] + 1) > 4 ? 1 : (@coordinates[:orientation] + 1)
-    end
+  def turn_left
+    coordinates.orientation = coordinates.orientation == 1 ? 4 : coordinates.orientation - 1
+  end
+
+  def turn_right
+    coordinates.orientation = coordinates.orientation == 4 ? 1 : coordinates.orientation + 1
   end
 
   def move
-    if @coordinates[:orientation] == 1
-      @coordinates[:y_coordinate] += 1
-    elsif @coordinates[:orientation] == 2
-      @coordinates[:x_coordinate] += 1
-    elsif @coordinates[:orientation] == 3
-      @coordinates[:y_coordinate] -= 1
-    elsif @coordinates[:orientation] == 4
-      @coordinates[:x_coordinate] -= 1
+    case coordinates.orientation
+    when 1
+      coordinates.y += 1
+    when 2
+      coordinates.x += 1
+    when 3
+      coordinates.y -= 1
+    when 4
+      coordinates.x -= 1
     end
   end
 end
