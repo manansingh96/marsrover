@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe InputParser do
   let(:commands) { %w[L M L M L M L M M] }
 
   subject do
-      described_class.new(FILE_FIXTURE_PATH + '/input.txt')
+    described_class.new(FILE_FIXTURE_PATH + '/input.txt')
   end
 
   it 'sets top right x' do

@@ -13,11 +13,11 @@ class Rover
   end
 
   def finish_mission
-    if top_right_corner.inside_plateau_grid(coordinates)
-      final_output
-    else
-      puts 'A Rover is out of grid.'
-    end
+    top_right_corner.inside_plateau_grid(coordinates) ? final_output : rover_out_of_grid
+  end
+
+  def rover_out_of_grid
+    puts 'A Rover is out of grid.'
   end
 
   def final_output

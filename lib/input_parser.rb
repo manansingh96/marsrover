@@ -5,15 +5,7 @@ class InputParser
   attr_accessor :inputs, :top_right_corner
   def initialize(filename)
     self.inputs = File.read(filename).split("\n").map(&:strip)
-    self.top_right_corner = Plateau.new(top_right_x, top_right_y)
-  end
-
-  def top_right_x
-    @inputs[0].split(' ')[0].to_i
-  end
-
-  def top_right_y
-    @inputs[0].split(' ')[1].to_i
+    self.top_right_corner = Plateau.new(@inputs[0].split(' '))
   end
 
   def run_rovers

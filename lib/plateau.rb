@@ -1,9 +1,9 @@
 class Plateau
   attr_accessor :x, :y
 
-  def initialize(x, y)
-    self.x = x
-    self.y = y
+  def initialize(input)
+    self.x = input[0].to_i
+    self.y = input[1].to_i
   end
 
   def inside_plateau_grid(final_coordinates)

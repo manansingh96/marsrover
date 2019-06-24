@@ -1,7 +1,5 @@
 require "bundler/setup"
 
-require "bundler/setup"
-
 project_lib_dir = File.join(
     File.dirname(
         File.expand_path(__FILE__)
